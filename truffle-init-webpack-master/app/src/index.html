@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>MetaCoin | Truffle Webpack Demo w/ Frontend</title>
+  </head>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      padding: 5rem 10rem;
+      background-color: #e4e9ee;
+      font-family: sans-serif;
+      .container-left {
+        width: 60%;
+      }
+      .container-right {
+        flex-direction: column;
+        width: 30%;
+        border-left: solid 0.3rem #7890a8;
+        padding-left: 10rem;
+        div {
+          margin-bottom: 4rem;
+        }
+      }
+    }
+    input {
+      display: block;
+      margin-bottom: 12px;
+    }
+    h1 {
+      margin: 2rem 0;
+      color: #f0a818;
+    }
+    h2 {
+      color: #304878;
+    }
+    input {
+      position: relative;
+      cursor: text;
+      font-size: 14px;
+      line-height: 20px;
+      padding: 0 16px;
+      height: 48px;
+      background-color: #fff;
+      border: 1px solid #d6d6e7;
+      border-radius: 3px;
+      color: rgb(35, 38, 59);
+      box-shadow: inset 0 1px 4px 0 rgb(119 122 175 / 30%);
+      overflow: hidden;
+      transition: all 100ms ease-in-out;
+      :focus {
+          border-color: #f0a818;
+          box-shadow: 0 1px 0 0 rgb(35 38 59 / 5%);
+      }
+    }
+    button {
+      display: inline-block;
+      outline: 0;
+      border: 0;
+      cursor: pointer;
+      background-color: #304878;
+      border-radius: 50px;
+      padding: 8px 16px;
+      font-size: 16px;
+      font-weight: 700;
+      color: white;
+      line-height: 26px;
+    }
+  </style>
+  <body>
+    <div class="container-left">
+      <h1>MetaCoin</h1>
+      <h2>Lista de cuentas: </h2>
+      <p class="accounts"><strong>loading...</strong></p>
+
+      <div>
+        <p><strong>Mi cuenta </strong><span class="myAccount">loading...</span></p>
+        <p><strong>Mi saldo </strong><span class="balance">loading...</span> META</p>
+      </div>
+    </div>
+    <div class="container-right">
+      <div>
+        <h1>Enviar MetaCoin</h1>
+
+        <label for="amount">Saldo:</label>
+        <input type="text" id="amount" placeholder="e.g. 95" />
+
+        <label for="receiver">Cuenta a enviar:</label>
+        <input
+          type="text"
+          id="receiver"
+          placeholder="e.g. 0x93e66d9baea28c17d9fc393b53e3fbdd76899dae"
+        />
+
+        <button onclick="App.sendCoin()">Enviar</button>
+      </div>
+      <div>
+        <h1>Consultar saldo</h1>
+        <label for="amount">Cuenta:</label>
+        <input
+          type="text"
+          id="receiverToCheck"
+          placeholder="e.g. 0x93e66d9baea28c17d9fc393b53e3fbdd76899dae"
+        />
+        <button onclick="App.checkAmount()">Consultar</button>
+        <button onclick="App.checkAmountEth()">Consultar en ETH</button>
+      </div>
+      <div>
+        <h1>Output: </h1>
+        <p id="status"></p>
+      </div>
+    </div>
+    <!-- <p>
+      <strong>Hint:</strong> open the browser developer console to view any
+      errors and warnings.
+    </p> -->
+    <script src="index.js"></script>
+  </body>
+</html>
