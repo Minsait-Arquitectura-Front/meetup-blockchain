@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IndraBank</title>
+    <style>
+        body {
+            background-color: #f0f4f8;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: #fff;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        h1 {
+            color: #03657C;
+            margin-bottom: 1.5rem;
+        }
+        input {
+            width: calc(100% - 2rem);
+            padding: 0.75rem;
+            margin-bottom: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        button {
+            background-color: #03657C;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #02536b;
+        }
+        p {
+            margin-top: 1.5rem;
+            color: #333;
+        }
+        #txHash {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>IndraBank</h1>
+        <input type="text" id="from" placeholder="Sender Address">
+        <input type="text" id="to" placeholder="Recipient Address">
+        <input type="text" id="amount" placeholder="Amount in ETH">
+        <button id="sendButton">Send ETH</button>
+        <p>Transaction Hash: <span id="txHash"></span></p>
+    </div>
+
+    <script>
+        document.getElementById('sendButton').onclick = async () => {
+            const from = document.getElementById('from').value;
+            const to = document.getElementById('to').value;
+            const amount = document.getElementById('amount').value;
+
+            const response = await fetch('http://localhost:3000/send', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ from, to, amount })
+            });
+
+            const result = await response.text();
+            document.getElementById('txHash').innerText = result;
+        };
+    </script>
+</body>
+</html>
